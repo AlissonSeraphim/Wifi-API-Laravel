@@ -1,66 +1,45 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Projeto API de WiFi - Laravel
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Este projeto é uma API desenvolvida em Laravel para gerar QR Codes de configuração de redes WiFi. A API possui dois métodos principais: GET, para obter o QR Code, e POST, para alterar os dados de usuário e senha.
 
-## About Laravel
+## Funcionalidades
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- **GET**: O método GET retorna um QR Code contendo as configurações de rede WiFi, com base nos dados armazenados na API. Esses dados são obtidos do arquivo `credentials.json`, que contém as informações de usuário e senha.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- **POST**: O método POST permite atualizar os dados de usuário e senha na API. Ao enviar uma requisição POST com os novos valores de usuário e senha, a API irá atualizar o arquivo `credentials.json` com as novas informações.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Desafios Enfrentados
 
-## Learning Laravel
+Durante o desenvolvimento deste projeto, foram encontrados alguns desafios e dificuldades, principalmente por se tratar do primeiro contato com o desenvolvimento de APIs em PHP e Laravel. Os principais desafios enfrentados foram:
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+1. **Gerenciamento de dependências**: Foram necessárias instalações e configurações do PHP, Composer e Laravel para que o projeto pudesse ser executado corretamente.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+2. **Programação Orientada a Objetos (POO)**: Foi necessário adquirir conhecimentos básicos de POO para criar e modificar as classes e métodos do projeto.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+3. **Deploy da API**: O processo de deploy da API em um servidor de hospedagem (Railway) foi uma tarefa nova e desafiadora, requerendo ajustes e configurações específicas para garantir o funcionamento correto da API no ambiente de produção.
 
-## Laravel Sponsors
+4. **Tratamento de CORS e CSRF**: Foi necessário lidar com problemas de Cross-Origin Resource Sharing (CORS) e Cross-Site Request Forgery (CSRF), que inicialmente bloqueavam o método POST da API. Foram implementadas soluções como middlewares de CORS e CSRF para permitir o acesso adequado à API.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+## Uso
 
-### Premium Partners
+A API pode ser acessada no seguinte endereço: [https://wifi-api-laravel-alisson.up.railway.app/wifi](https://wifi-api-laravel-alisson.up.railway.app/wifi).
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+Para testar os métodos POST e GET da API, você pode utilizar ferramentas como o [Thunder Client](https://www.thunderclient.io/) ou fazer requisições diretamente via cURL ou JavaScript.
 
-## Contributing
+## Estrutura do Projeto
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+- O arquivo `WifiController.php` em `app/Http/Controllers` contém a lógica do controle da API, incluindo os métodos para geração do QR Code e atualização dos dados de usuário e senha.
 
-## Code of Conduct
+- O arquivo `credentials.json` em `storage/data` é utilizado para armazenar as informações de usuário e senha.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+- O arquivo `api.php` em `/routes` contém as rotas da API, especificando os métodos e controladores correspondentes.
 
-## Security Vulnerabilities
+## Contribuições
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Este projeto foi desenvolvido com o objetivo de aprendizado e demonstração.
 
-## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## Contato
+
+Em caso de dúvidas ou sugestões, você pode entrar em contato comigo através do email [seu-email@example.com](mailto:seu-email@example.com).
+
