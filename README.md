@@ -41,5 +41,8 @@ Este projeto foi desenvolvido com o objetivo de aprendizado e demonstração.
 
 ## Contato
 
-Em caso de dúvidas ou sugestões, você pode entrar em contato comigo através do email [seu-email@example.com](mailto:seu-email@example.com).
+Em caso de dúvidas ou sugestões, você pode entrar em contato comigo:
+
+- LinkedIn: [Alisson Tassi](https://www.linkedin.com/in/alissontassi/)
+- GitHub: [AlissonSeraphim](https://github.com/AlissonSeraphim).
 
