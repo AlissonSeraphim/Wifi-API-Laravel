@@ -37,7 +37,9 @@ class WifiController extends Controller
         $result = $writer->write($qrCode);
         $qrCodeFinal = $result->getDataUri();
 
-        return response()->json(['qrCodeUrl' => $qrCodeFinal]);
+        return response()->json(['qrCodeUrl' => $qrCodeFinal,
+        'credentialsRefreshed' => $this->wifiCredentials,
+    ]);
     }
 
     public function updateCredentials(Request $request)
@@ -48,7 +50,10 @@ class WifiController extends Controller
 
         file_put_contents($this->credentialsFile, json_encode($this->wifiCredentials));
 
-        return response()->json(['message' => 'Credenciais do Wi-Fi atualizadas com sucesso.']);
+        return response()->json([
+            'message' => 'Credenciais do Wi-Fi atualizadas com sucesso.',
+            'credentialsRefreshed' => $this->wifiCredentials,
+        ]);
     }
 }
 
