@@ -14,7 +14,7 @@ class WifiController extends Controller
 
     public function __construct()
     {
-        $this->credentialsFile = storage_path('app/credentials.json');
+        $this->credentialsFile = storage_path('data/credentials.json');
         $this->loadCredentials();
     }
 
