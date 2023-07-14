@@ -5,15 +5,29 @@ namespace App\Http\Controllers;
 use Endroid\QrCode\Writer\PngWriter;
 use Illuminate\Http\Request;
 use Endroid\QrCode\QrCode;
-use Illuminate\Support\Facades\Cache;
 
 class WifiController extends Controller
 {
+    private $credentialsFile;
+    private $wifiCredentials;
+
+
+    public function __construct()
+    {
+        $this->credentialsFile = storage_path('app/credentials.json');
+        $this->loadCredentials();
+    }
+
+    private function loadCredentials()
+    {
+        $credentials = file_get_contents($this->credentialsFile);
+        $this->wifiCredentials = json_decode($credentials, true);
+    }
 
     public function generateQrCode()
     {
-        $username = Cache::get('username', 'Martelo de pedreiro');
-        $password = Cache::get('password', '123456');
+        $username = $this->wifiCredentials['username'];
+        $password = $this->wifiCredentials['password'];
         $wifiString = "WIFI:T:WPA;S:$username;P:$password;;";
 
         $qrCode = QRCode::create($wifiString)
@@ -29,12 +43,12 @@ class WifiController extends Controller
     public function updateCredentials(Request $request)
     {
         $data = $request->json()->all();
-        $username = $data['username'];
-        $password = $data['password'];
+        $this->wifiCredentials['username'] = $data['username'];
+        $this->wifiCredentials['password'] = $data['password'];
 
-        Cache::put('username', $username);
-        Cache::put('password', $password);
+        file_put_contents($this->credentialsFile, json_encode($this->wifiCredentials));
 
         return response()->json(['message' => 'Credenciais do Wi-Fi atualizadas com sucesso.']);
     }
 }
+
